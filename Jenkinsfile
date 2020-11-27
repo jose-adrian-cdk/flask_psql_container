@@ -1,10 +1,16 @@
 pipeline {
   agent any
   stages {
-    stage('') {
+    stage('setup') {
       steps {
         echo 'Hello world'
         sh 'env'
+      }
+    }
+
+    stage('install') {
+      steps {
+        sh 'gcc -v '
       }
     }
 
