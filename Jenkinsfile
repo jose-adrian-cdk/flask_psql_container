@@ -15,7 +15,7 @@ pipeline {
 
     stage('deploy') {
       steps {
-        sh 'docker build -t service/web/'
+        sh 'docker build -t "service/web/"'
       }
     }
 
