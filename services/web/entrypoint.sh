@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# hay que darle permisos de ejecución 
+# chmod +x entrypoint.sh
+
 if ["$DATABASE" = "postgres"]
 then
     echo "Waiting for postgres..."
