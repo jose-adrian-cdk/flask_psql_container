@@ -46,7 +46,7 @@ def help():
 @app.route("/api/v1.0/signup", methods=["POST"])
 def signup():
     if not request.json:
-        abort(400)
+        return jsonify({"error": "No se ha proporcionado el username ni password"}), 400
     user_exist = User.query.filter_by(username=request.json.get('username', '')).first()
     if user_exist:
         return jsonify({"result": "El usuario ya se encuentra registrado"}), 201
@@ -59,7 +59,7 @@ def signup():
 @app.route("/api/v1.0/signin", methods=["POST"])
 def signin():
     if not request.json:
-        abort(400)
+        return jsonify({"error": "No se ha proporcionado el username ni password"}), 400
     user = User.query.filter_by(username=request.json.get('username', '')).first()
     if user.is_correct_password(request.json.get('password', '')):
         user.lastTimeConnection = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
@@ -70,7 +70,5 @@ def signin():
 
 @app.route("/api/v1.0/users", methods=["GET"])
 def get_users():
-    if not request.json:
-        abort(400)
     users = User.query.all()
     return jsonify({'users': users}), 200
