@@ -13,5 +13,11 @@ pipeline {
       }
     }
 
+    stage('deploy') {
+      steps {
+        sh 'docker build -t service/web/Dockerfile'
+      }
+    }
+
   }
 }
