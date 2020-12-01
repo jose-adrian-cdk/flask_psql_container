@@ -3,14 +3,13 @@ pipeline {
   stages {
     stage('setup') {
       steps {
-        echo 'Hello world'
-        sh 'env'
+        sh 'docker -v'
       }
     }
 
     stage('install') {
       steps {
-        sh 'gcc -v '
+        sh 'docker'
       }
     }
 
