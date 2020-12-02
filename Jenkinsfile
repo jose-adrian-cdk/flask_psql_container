@@ -21,7 +21,7 @@ pipeline {
 
     stage('run') {
       steps {
-        sh 'docker run -itd --rm --name web_server_cont -p 5001:5000 web_server:1.0'
+        sh 'docker run -itd --name web_server_cont -p 5001:5000 web_server:1.0'
       }
     }
 
