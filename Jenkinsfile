@@ -3,14 +3,25 @@ pipeline {
   stages {
     stage('setup') {
       steps {
-        echo 'Hello world'
-        sh 'env'
+        sh 'docker -v'
       }
     }
 
     stage('install') {
       steps {
-        sh 'gcc -v '
+        sh 'docker'
+      }
+    }
+
+    stage('deploy') {
+      steps {
+        sh 'docker build -t web_server:1.0 services/web/'
+      }
+    }
+
+    stage('run') {
+      steps {
+        sh 'docker run -itd --rm --name web_server_cont -p 5001:5000 web_server:1.0'
       }
     }
 
